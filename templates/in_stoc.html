@@ -1,0 +1,12 @@
+{% extends 'style_log.html' %}
+{% block title %}Наличие товара{% endblock %}
+{% block content %}
+<div class="registration-container">
+    <p>
+        Данного товара нет в наличии, но скоро будет
+    </p>
+    <a href="{% url 'products' %}">
+        <button>Перейти к покупкам</button>
+    </a>
+</div>
+{% endblock %}

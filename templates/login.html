@@ -1,0 +1,21 @@
+{% extends 'style_log.html' %}
+{% load static %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="registration-container">
+    <h1>Вход</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>Имя пользователя:</label><br>
+            <input type="text" name="username">
+        </p>
+        <p>
+            <label>Пароль:</label><br>
+            <input type="password" name="password">
+        </p>
+        <button type="submit">Войти</button>
+    </form>
+
+    <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+{% endblock %}

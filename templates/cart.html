@@ -10,7 +10,9 @@
         <tr>
             <th>Товар</th>
             <th>Цена</th>
+            <th>Кличество</th>
             <th>Действие</th>
+
         </tr>
     </thead>
     <tbody>
@@ -18,6 +20,7 @@
             <tr>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }} руб.</td>
+                <td>{{ len.cart }}</td>
                 <td>
                     <form method="post" action="{% url 'remove_from_cart' product.id %}" style="display:inline;">
                         {% csrf_token %}
@@ -30,7 +33,9 @@
 </table>
 <p class="fw-bold">Итого: {{ total }} руб.</p>
 <a href="{% url 'products' %}" class="btn btn-outline-primary">Продолжить покупки</a>
+<a href="{% url 'create_order' %}" class="btn btn-outline-primary">создать заказ</a>
 {% else %}
 <p>Корзина пуста.</p>
+<a href="{% url 'products' %}" class="btn btn-outline-primary">Продолжить покупки</a>
 {% endif %}
 {% endblock %}

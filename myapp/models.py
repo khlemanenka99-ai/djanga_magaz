@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -27,3 +28,15 @@ class ProductImage(models.Model):
 
     detail_images = models.ImageField(upload_to='images/', blank=True, null=True)
     product = models.ForeignKey(Product, related_name='images', on_delete=models.SET_NULL, null=True, blank=True)
+
+# class Orders(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+#     status = models.CharField(max_length=50, default='Новый')
+#     address = models.CharField(max_length=255, help_text='Адрес доставки')
+#     phone = models.CharField(max_length=20, help_text='Телефон клиента')
+#
+# class OrderItem(models.Model):
+#     orders = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
+#     product_name = models.CharField(max_length=255)
+#     product_price = models.DecimalField(max_digits=10, decimal_places=2)
+

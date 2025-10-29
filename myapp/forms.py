@@ -1,4 +1,4 @@
-from contextlib import redirect_stderr
+
 
 from django import forms
 from django.contrib.auth.models import User
@@ -28,3 +28,19 @@ class RegisterForm(forms.ModelForm):
         if cleaned_data.get('password') != cleaned_data.get('password2'):
             raise forms.ValidationError("Пароли не совпадают")
         return cleaned_data
+
+# class OrderForm(forms.ModelForm):
+#     class Meta:
+#         model = Orders
+#         fields = ['address', 'phone']
+#         widgets = {
+#             'address': forms.TextInput(attrs={
+#                 'placeholder': 'Введите адрес доставки',
+#                 'class': 'form-control'
+#             }),
+#             'phone': forms.TextInput(attrs={
+#                 'placeholder': 'Введите номер телефона',
+#                 'class': 'form-control'
+#             }),
+#         }
+

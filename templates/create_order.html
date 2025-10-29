@@ -1,0 +1,19 @@
+{% extends 'style_log.html' %}
+{% load static %}
+{% block title %}Оформление заказа{% endblock %}
+{% block content %}
+    <div class="registration-container">
+    <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.address.label_tag }}
+        {{ form.address }}
+    </div>
+    <div class="form-group">
+        {{ form.phone.label_tag }}
+        {{ form.phone }}
+    </div>
+    <button type="submit" class="btn btn-primary">Оформить заказ</button>
+   </form>
+     </div>
+{% endblock %}

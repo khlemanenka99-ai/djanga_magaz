@@ -1,8 +1,9 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import RegisterForm
-from .models import Product, Category
+from .forms import RegisterForm, OrderForm
+from .models import Product, Category, OrderItem
 
 
 def register_view(request):
@@ -24,8 +25,13 @@ def products_view(request):
     categories = Category.objects.all()
     category_id = request.GET.get('category')
     products = Product.objects.all()
+    query = request.GET.get('q')
     if category_id:
         products = products.filter(category_id=category_id)
+    if query:
+        products = products.filter(
+            Q(name__icontains=query)
+        )
     return render(request, 'products.html', {
         'products': products,
         'categories': categories,
@@ -38,63 +44,118 @@ def product_detail(request, pk):
     return render(request, 'product_detail.html', {'product': product})
 
 @login_required(login_url='/login/')
-def add_to_cart(request, product_id):
-    cart = request.session.get('cart', [])
+def add_to_cart(request, product_id, quantity=1):
+    cart = request.session.get('cart', {})
+
     product = get_object_or_404(Product, pk=product_id)
-    if product.in_stock == True:
-        cart.append(product_id)
-        if product_id not in cart:
-            cart[product_id] = cart.get(product_id, 0) + 1
-    elif product.in_stock == False:
-        return render(request,'in_stoc.html', {'product': product})
+    if not product.in_stock:
+        return render(request, 'in_stock.html', {
+            'product': product,
+        })
+    if product.quantity < quantity:
+        return render(request, 'in_stock.html', {
+            'product': product,
+        })
+
+    product_id_str = str(product_id)
+    if product_id_str in cart:
+        new_quantity = cart[product_id_str] + quantity
+        if new_quantity > product.quantity:
+            new_quantity = product.quantity
+        cart[product_id_str] = new_quantity
+    else:
+        if quantity > product.quantity:
+            quantity = product.quantity
+        cart[product_id_str] = quantity
+
     request.session['cart'] = cart
+    request.session.modified = True
+
     return redirect('cart_view')
 
 
 @login_required(login_url='/login/')
-def remove_from_cart(request, product_id):
-    cart = request.session.get('cart', [])
-    if product_id in cart:
-        cart.remove(product_id)
-    request.session['cart'] = cart
+def remove_from_cart(request, product_id, quantity=1):
+    cart = request.session.get('cart', {})
+    product = get_object_or_404(Product, pk=product_id)
+
+    product_id_str = str(product_id)
+
+    if product_id_str in cart:
+        current_quantity = cart[product_id_str]
+        if current_quantity > quantity:
+            cart[product_id_str] = current_quantity - quantity
+        else:
+            del cart[product_id_str]
+        request.session['cart'] = cart
+        request.session.modified = True
+    else:
+        return render(request, 'cart.html', {
+            'message': 'Товар отсутствует в корзине.',
+            'cart': cart
+        })
+
     return redirect('cart_view')
 
 @login_required(login_url='/login/')
 def cart_view(request):
-    cart = request.session.get('cart', [])
-    products = Product.objects.filter(id__in=cart)
-    total = sum(p.price for p in products)
-    return render(request, 'cart.html', {'products': products, 'total': total})
+    cart = request.session.get('cart', {})
+    cart_items = []
+    total_price = 0
+    for product_id_str, quantity in cart.items():
+        product = get_object_or_404(Product, pk=int(product_id_str))
+        total = product.price * quantity
+        total_price += total
+        cart_items.append({
+            'product': product,
+            'quantity': quantity,
+            'total_price': total
+        })
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'total_price': total_price
+    })
 
-# @login_required(login_url='/login/')
-# def create_order(request):
-#     if request.method == 'POST':
-#         form = OrderForm(request.POST)
-#         if form.is_valid():
-#             orders = form.save(commit=False)
-#             orders.user = request.user
-#             orders.save()
-#             cart = request.session.get('cart', [])
-#             products = Product.objects.filter(id__in=cart)
-#
-#             product_name = Product.name
-#             product_price = Product.price
-#
-#
-#             OrderItem.objects.create(
-#                 orders=orders,
-#                 product_name=product_name,
-#                 product_price=product_price,
-#             )
-#
-#             orders.save()
-#             request.session['cart'] = {}
-#
-#             return redirect('success')
-#     else:
-#         form = OrderForm()
-#
-#     return render(request, 'create_order.html', {'form': form})
+@login_required(login_url='/login/')
+def create_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
+
+            cart = request.session.get('cart', {})
+            if not cart:
+                return render(request, 'create_order.html', {
+                    'form': form,
+                    'error_message': 'Ваша корзина пуста.'
+                })
+
+            for product_id_str, quantity in cart.items():
+                product_id = int(product_id_str)
+                product = get_object_or_404(Product, pk=product_id)
+
+                if not product.in_stock or product.quantity < quantity:
+                    return render(request, 'create_order.html', {
+                        'form': form,
+                        'error_message': '.'
+                    })
+
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=quantity
+                )
+
+            request.session['cart'] = {}
+            request.session.modified = True
+
+            return render(request, 'success.html')
+    else:
+        form = OrderForm()
+
+    return render(request, 'create_order.html', {'form': form})
 
 
 # TELEGRAM_BOT_TOKEN = '7800961465:AAGUnuhuN7EBnYbe1t6CmOOPvnZtOUC3-Jo'

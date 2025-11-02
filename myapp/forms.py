@@ -3,7 +3,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Product
+from .models import Product, Orders
 
 
 class ProductForm(forms.ModelForm):
@@ -29,18 +29,18 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("Пароли не совпадают")
         return cleaned_data
 
-# class OrderForm(forms.ModelForm):
-#     class Meta:
-#         model = Orders
-#         fields = ['address', 'phone']
-#         widgets = {
-#             'address': forms.TextInput(attrs={
-#                 'placeholder': 'Введите адрес доставки',
-#                 'class': 'form-control'
-#             }),
-#             'phone': forms.TextInput(attrs={
-#                 'placeholder': 'Введите номер телефона',
-#                 'class': 'form-control'
-#             }),
-#         }
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = ['address', 'phone']
+        widgets = {
+            'address': forms.TextInput(attrs={
+                'placeholder': 'Введите адрес доставки',
+                'class': 'form-control'
+            }),
+            'phone': forms.TextInput(attrs={
+                'placeholder': 'Введите номер телефона',
+                'class': 'form-control'
+            }),
+        }
 

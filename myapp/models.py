@@ -15,6 +15,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     in_stock = models.BooleanField(default=True)
+    quantity = models.PositiveSmallIntegerField(blank=False, null=False)
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -23,20 +24,32 @@ class Product(models.Model):
     )
     image = models.ImageField(upload_to='products/', blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.in_stock = self.quantity > 0
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return self.name
+
 class ProductImage(models.Model):
     objects = models.Manager()
 
     detail_images = models.ImageField(upload_to='images/', blank=True, null=True)
     product = models.ForeignKey(Product, related_name='images', on_delete=models.SET_NULL, null=True, blank=True)
 
-# class Orders(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
-#     status = models.CharField(max_length=50, default='Новый')
-#     address = models.CharField(max_length=255, help_text='Адрес доставки')
-#     phone = models.CharField(max_length=20, help_text='Телефон клиента')
-#
-# class OrderItem(models.Model):
-#     orders = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
-#     product_name = models.CharField(max_length=255)
-#     product_price = models.DecimalField(max_digits=10, decimal_places=2)
+class Orders(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    status = models.CharField(max_length=50, default='Новый')
+    address = models.CharField(max_length=255, help_text='Адрес доставки')
+    phone = models.CharField(max_length=20, help_text='Телефон клиента')
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=False,
+    )
+    quantity = models.PositiveSmallIntegerField(default=1)
+
+
 

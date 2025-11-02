@@ -1,41 +1,54 @@
 {% extends 'base.html' %}
-{% block title %}Корзина{% endblock %}
 
 {% block content %}
-<h1>🛒 Ваша корзина</h1>
+<h1>Ваша корзина</h1>
 
-{% if products %}
+{% if cart_items %}
 <table class="table table-bordered">
     <thead class="table-light">
         <tr>
-            <th>Товар</th>
-            <th>Цена</th>
-            <th>Кличество</th>
+            <th>Изображение</th>
+            <th>Наименование</th>
+            <th>Цена за шт.</th>
+            <th>Количество</th>
+            <th>Общая цена</th>
             <th>Действие</th>
-
         </tr>
     </thead>
     <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }} руб.</td>
-                <td>{{ len.cart }}</td>
-                <td>
-                    <form method="post" action="{% url 'remove_from_cart' product.id %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
-                    </form>
-                </td>
-            </tr>
+        {% for item in cart_items %}
+        <tr>
+            <td>
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="100">
+                {% else %}
+
+                {% endif %}
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total_price }}</td>
+            <td>
+                <form method="post" action="{% url 'remove_from_cart' product_id=item.product.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+                <form method="post" action="{% url 'add_to_cart' product_id=item.product.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Добавить</button>
+                </form>
+            </td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>
-<p class="fw-bold">Итого: {{ total }} руб.</p>
+
+<p class="fw-bold">Итого: {{ total_price }} руб.</p>
+<a href="{% url 'create_order' %}" class="btn btn-outline-primary">Оформление заказа</a>
 <a href="{% url 'products' %}" class="btn btn-outline-primary">Продолжить покупки</a>
-<a href="{% url 'create_order' %}" class="btn btn-outline-primary">создать заказ</a>
 {% else %}
-<p>Корзина пуста.</p>
+<p>Ваша корзина пуста.</p>
 <a href="{% url 'products' %}" class="btn btn-outline-primary">Продолжить покупки</a>
 {% endif %}
 {% endblock %}

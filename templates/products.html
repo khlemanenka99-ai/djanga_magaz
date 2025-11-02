@@ -18,6 +18,15 @@
     {% endfor %}
 </div>
 
+    <!-- Поиск -->
+    <form method="get" class="text-center mb-4">
+        <div class="input-group w-50 mx-auto">
+            <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Поиск по названию продукта ..."
+                   class="form-control border-success">
+            <button class="btn btn-success" type="submit">🔍 Найти</button>
+        </div>
+    </form>
+
 <!-- Список товаров -->
 <div class="row">
     {% for product in products %}
@@ -33,7 +42,7 @@
                 <p class="card-text">{{ product.description|truncatewords:15 }}</p>
                 <p class="text-muted">{{ product.price }} руб.</p>
                 {% if product.in_stock %}
-                <span class="badge bg-success">В наличии</span>
+                <span class="badge bg-success">В наличии {{ product.quantity }} шт.</span>
                 {% else %}
                 <span class="badge bg-danger">Нет в наличии</span>
                 {% endif %}

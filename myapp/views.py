@@ -11,10 +11,10 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])  # хэшируем пароль
+            user.set_password(form.cleaned_data['password'])
             user.save()
-            login(request, user)  # сразу авторизуем пользователя
-            return redirect('products')  # редирект на список товаров
+            login(request, user)
+            return redirect('products')
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})

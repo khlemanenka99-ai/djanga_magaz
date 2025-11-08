@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">Заказ №{{ order.id }}</h2>
+
+    <div class="mb-3">
+        <p><strong>Пользователь:</strong> {{ order.user.username }}</p>
+        <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+        <!-- сюда можно добавить другие поля, например, дату, сумму и т.п -->
+    </div>
+
+    <h3 class="mb-3">Товары в заказе</h3>
+    {% if order.items.all %}
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Изображение</th>
+                    <th>Название продукта</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all %}
+                <tr>
+                    <td>
+                        {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 80px; height: auto;">
+                        {% else %}
+                        Нет изображения
+                        {% endif %}
+                    </td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.price }} руб.</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>Нет товаров в этом заказе.</p>
+    {% endif %}
+    <a href="{% url 'products' %}" class="btn btn-outline-primary mt-4">
+        Продолжить покупки
+    </a>
+</div>
+{% endblock %}

@@ -38,9 +38,16 @@ class ProductImage(models.Model):
 
 class Orders(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
-    status = models.CharField(max_length=50, default='Новый')
+    STATUS_CHOICES = [
+        ('new', 'Новый'),
+        ('paid', 'Оплачен'),
+        ('sent', 'Отправлен'),
+    ]
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='new')
     address = models.CharField(max_length=255, help_text='Адрес доставки')
     phone = models.CharField(max_length=20, help_text='Телефон клиента')
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')

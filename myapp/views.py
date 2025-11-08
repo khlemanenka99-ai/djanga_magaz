@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import RegisterForm, OrderForm
-from .models import Product, Category, OrderItem
+from .models import Product, Category, OrderItem, Orders
 
 
 def register_view(request):
@@ -121,17 +121,15 @@ def create_order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            order = form.save(commit=False)
-            order.user = request.user
-            order.save()
-
             cart = request.session.get('cart', {})
             if not cart:
                 return render(request, 'create_order.html', {
                     'form': form,
                     'error_message': 'Ваша корзина пуста.'
                 })
-
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
             for product_id_str, quantity in cart.items():
                 product_id = int(product_id_str)
                 product = get_object_or_404(Product, pk=product_id)
@@ -139,7 +137,7 @@ def create_order(request):
                 if not product.in_stock or product.quantity < quantity:
                     return render(request, 'create_order.html', {
                         'form': form,
-                        'error_message': '.'
+                        'error_message': f"Товар {product.name} недоступен в нужном количестве."
                     })
 
                 OrderItem.objects.create(
@@ -151,11 +149,21 @@ def create_order(request):
             request.session['cart'] = {}
             request.session.modified = True
 
-            return render(request, 'success.html')
+            return render(request, 'success.html', {'order': order})
     else:
         form = OrderForm()
 
     return render(request, 'create_order.html', {'form': form})
+
+@login_required(login_url='/login/')
+def order(request):
+    orders = Orders.objects.filter(user=request.user)
+    return render(request, 'order.html', {'orders': orders})
+
+@login_required(login_url='/login/')
+def orders_ditail(request, order_id):
+    order = Orders.objects.get(id=order_id)
+    return render(request, 'orders_ditail.html', {'order': order})
 
 
 # TELEGRAM_BOT_TOKEN = '7800961465:AAGUnuhuN7EBnYbe1t6CmOOPvnZtOUC3-Jo'

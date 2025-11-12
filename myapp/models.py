@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from decimal import Decimal
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -23,6 +23,11 @@ class Product(models.Model):
         blank=True
     )
     image = models.ImageField(upload_to='products/', blank=True, null=True)
+
+
+    @property
+    def price_with_vat(self):
+        return self.price * Decimal('1.2')
 
     def save(self, *args, **kwargs):
         self.in_stock = self.quantity > 0

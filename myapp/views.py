@@ -77,8 +77,6 @@ def add_to_cart(request, product_id, quantity=1):
 @login_required(login_url='/login/')
 def remove_from_cart(request, product_id, quantity=1):
     cart = request.session.get('cart', {})
-    product = get_object_or_404(Product, pk=product_id)
-
     product_id_str = str(product_id)
 
     if product_id_str in cart:

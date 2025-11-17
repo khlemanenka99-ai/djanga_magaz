@@ -24,10 +24,13 @@ class Product(models.Model):
     )
     image = models.ImageField(upload_to='products/', blank=True, null=True)
 
-
     @property
-    def price_with_vat(self):
-        return self.price * Decimal('1.2')
+    def price_sale(self):
+        return self.price * Decimal('0.75')
+
+    # @property
+    # def price_with_vat(self):
+    #     return self.price * Decimal('1.2')
 
     def save(self, *args, **kwargs):
         self.in_stock = self.quantity > 0
@@ -42,6 +45,8 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.SET_NULL, null=True, blank=True)
 
 class Orders(models.Model):
+    objects = models.Manager()
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     STATUS_CHOICES = [
         ('new', 'Новый'),

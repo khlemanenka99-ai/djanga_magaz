@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib import admin
 from django.http import HttpResponse
 from openpyxl import Workbook
@@ -20,13 +22,14 @@ def export_selected_to_excel(modeladmin, request, queryset):
     return response
 export_selected_to_excel.short_description = "Экспортировать выбранные в Excel"
 
+
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
-    list_display = ('name', 'price', 'quantity', 'in_stock',)
+    list_display = ('name', 'price', 'quantity', 'in_stock', 'price_sale',)
     list_filter = ('in_stock', 'category',)
     search_fields = ('name',)
     actions = [export_selected_to_excel]
@@ -45,6 +48,3 @@ class OrdersAdmin(admin.ModelAdmin):
     list_display = ('user', 'status', 'phone', 'address', 'created_at', 'updated_at',)
     list_filter = ('status',)
     search_fields = ('user__username',)
-
-
-

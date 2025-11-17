@@ -41,6 +41,7 @@
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description|truncatewords:15 }}</p>
                 <p class="text-muted">{{ product.price }} руб.</p>
+                <p class="text-muted">{{ get_price_sale }} руб.</p>
                 {% if product.in_stock %}
                 <span class="badge bg-success">В наличии {{ product.quantity }} шт.</span>
                 {% else %}

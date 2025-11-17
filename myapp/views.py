@@ -41,7 +41,10 @@ def products_view(request):
 @login_required(login_url='/login/')
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'product_price_sale': product.price_sale
+    })
 
 @login_required(login_url='/login/')
 def add_to_cart(request, product_id, quantity=1):

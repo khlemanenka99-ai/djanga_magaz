@@ -1,7 +1,11 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
 from .forms import RegisterForm, OrderForm
 from .models import Product, Category, OrderItem, Orders
 
@@ -19,13 +23,19 @@ def register_view(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
 
-
-
+@cache_page(60 * 60 * 24)
 def products_view(request):
+    print('>>>get')
     categories = Category.objects.all()
     category_id = request.GET.get('category')
     products = Product.objects.all()
+    # cache.set("products", products, timeout=100)
     query = request.GET.get('q')
+    # value = cache.get("products")
+    # print(value)
+    # cache.delete("products")
+    # value = cache.get("products")
+    # print(value)
     if category_id:
         products = products.filter(category_id=category_id)
     if query:
@@ -38,6 +48,9 @@ def products_view(request):
         'selected_category': category_id,
     })
 
+
+
+cache_page(60)
 @login_required(login_url='/login/')
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)

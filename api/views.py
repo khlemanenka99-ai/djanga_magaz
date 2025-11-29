@@ -2,6 +2,7 @@ from pprint import pprint
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status, permissions
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view
@@ -49,6 +50,14 @@ class ProductListAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(
+        operation_summary="Список продуктов",
+        operation_description="Получение списка продуктов с фильтрацией",
+        responses={
+            200: ProductSerializer(many=True)
+        },
+    )
+
     @method_decorator(cache_page(60))
     def get(self, request):
         print('>>get')
@@ -59,6 +68,17 @@ class ProductListAPIView(APIView):
 class ProductCreateAPIView(APIView):
     # authentication_classes = [SessionAuthentication]
     # permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_summary="Создание продукта",
+        operation_description="Создает новый продукт",
+        request_body=ProductSerializer,
+        responses={
+            201: ProductSerializer,
+            400: 'Ошибки валидации'
+        },
+    )
+
     def post(self, request):
         serializer = ProductSerializer(data=request.data)  # десериализация входных данных
         if serializer.is_valid():  # проверка данных

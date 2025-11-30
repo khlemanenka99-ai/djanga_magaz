@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from decimal import Decimal
 
@@ -23,14 +24,12 @@ class Product(models.Model):
         blank=True
     )
     image = models.ImageField(upload_to='products/', blank=True, null=True)
+    discount_percent = models.PositiveSmallIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     @property
-    def price_sale(self):
-        return self.price * Decimal('0.75')
-
-    # @property
-    # def price_with_vat(self):
-    #     return self.price * Decimal('1.2')
+    def discounted_price(self):
+        discount_multiplier = Decimal('1') - Decimal(self.discount_percent) / Decimal('100')
+        return self.price * discount_multiplier
 
     def save(self, *args, **kwargs):
         self.in_stock = self.quantity > 0

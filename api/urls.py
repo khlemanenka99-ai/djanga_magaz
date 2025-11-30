@@ -1,6 +1,7 @@
 from django.urls import path
 
-from api.views import test_api, ProductDetailAPIView, ProductListAPIView, ProductCreateAPIView, set_cookie_example, get_cookie_example, RegisterAPIView, LogoutAPIView
+from api.views import test_api, ProductDetailAPIView, ProductListAPIView, ProductCreateAPIView, set_cookie_example, \
+    get_cookie_example, RegisterAPIView, LogoutAPIView, SetDiscountAPIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,   # выдача access + refresh
     TokenRefreshView,      # обновление access по refresh
@@ -16,5 +17,7 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('register/', RegisterAPIView.as_view(), name='api_register')
+    path('register/', RegisterAPIView.as_view(), name='api_register'),
+
+    path('products/<int:pk>/diskount', SetDiscountAPIView.as_view(), name='product_diskount')
     ]

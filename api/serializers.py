@@ -2,21 +2,21 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from myapp.models import Product, Category
 
-# class ProductSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Product
-#         fields = ['id', 'name', 'description', 'price', 'in_stock', 'quantity', 'category', 'image']
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'price', 'in_stock', 'quantity', 'category', 'image']
 
-class ProductSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(max_length=100)
-    description = serializers.CharField(allow_blank=True, required=False)
-    price = serializers.DecimalField(max_digits=10, decimal_places=2)
-    in_stock = serializers.BooleanField(default=True)
-    category = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(), required=False, allow_null=True
-    )
-    image = serializers.ImageField(required=False, allow_null=True)
+# class ProductSerializer(serializers.Serializer):
+#     id = serializers.IntegerField(read_only=True)
+#     name = serializers.CharField(max_length=100)
+#     description = serializers.CharField(allow_blank=True, required=False)
+#     price = serializers.DecimalField(max_digits=10, decimal_places=2)
+#     in_stock = serializers.BooleanField(default=True)
+#     category = serializers.PrimaryKeyRelatedField(
+#         queryset=Category.objects.all(), required=False, allow_null=True
+#     )
+#     image = serializers.ImageField(required=False, allow_null=True)
 
     def validate_price(self, value):
         if value <= 0:
@@ -41,3 +41,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class ProductDiscountSerializer(serializers.ModelSerializer):
+    discount_percent = serializers.IntegerField(
+        min_value=0,
+        max_value=100,
+        help_text='Скидка в процентах'
+    )
+
+    class Meta:
+        model = Product
+        fields = ['discount_percent']
+
+    def update(self, instance, validated_data):
+        instance.discount_percent = validated_data['discount_percent']
+        instance.save()
+        return instance

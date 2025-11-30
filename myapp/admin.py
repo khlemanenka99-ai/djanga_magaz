@@ -29,7 +29,7 @@ class ProductImageInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
-    list_display = ('name', 'price', 'quantity', 'in_stock', 'price_sale',)
+    list_display = ('name', 'price', 'quantity', 'in_stock', 'discount_percent')
     list_filter = ('in_stock', 'category',)
     search_fields = ('name',)
     actions = [export_selected_to_excel]

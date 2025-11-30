@@ -4,15 +4,15 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status, permissions
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from api.permissions import IsManager, IsClient
 from myapp.models import Product
 from rest_framework.views import APIView
 
-from api.serializers import ProductSerializer, RegisterSerializer
+from api.serializers import ProductSerializer, RegisterSerializer, ProductDiscountSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -66,8 +66,8 @@ class ProductListAPIView(APIView):
         return Response(serializer.data)
 
 class ProductCreateAPIView(APIView):
-    # authentication_classes = [SessionAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsManager]
 
     @swagger_auto_schema(
         operation_summary="Создание продукта",
@@ -136,3 +136,32 @@ class LogoutAPIView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response({"detail": "Token invalid or already blacklisted"}, status=status.HTTP_400_BAD_REQUEST)
+
+class SetDiscountAPIView(APIView):
+    permission_classes = [IsAuthenticated, IsManager]
+
+    @swagger_auto_schema(
+        operation_summary="Создание скидки",
+        operation_description="Делает скидку",
+        request_body=ProductDiscountSerializer,
+        responses={
+            201: ProductDiscountSerializer,
+            400: 'Ошибки валидации'
+        },
+    )
+
+    def post(self, request, pk):
+        try:
+            product = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ProductDiscountSerializer(product, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                "message": "Discount updated",
+                "product_id": product.id,
+                "discount_percent": product.discount_percent
+            })
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

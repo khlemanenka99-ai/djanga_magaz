@@ -18,10 +18,16 @@
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
         <p><strong>Цена:</strong> {{ product.price }} руб.</p>
-        {% if product.in_stock %}
-            <p><span class="badge bg-success">В наличии</span></p>
+        {% if product.discount_percent > 0 %}
+        <p>Скидка: {{ product.discount_percent }}%</p>
+        <p>Цена со скидкой: {{ product.discounted_price|floatformat:2 }} руб.</p>
         {% else %}
-            <p><span class="badge bg-danger">Нет в наличии</span></p>
+        <p>Скидка отсутствует</p>
+        {% endif %}
+        {% if product.in_stock %}
+        <p><span class="badge bg-success">В наличии</span></p>
+        {% else %}
+        <p><span class="badge bg-danger">Нет в наличии</span></p>
         {% endif %}
         <form method="post" action="{% url 'add_to_cart' product.id %}">
             {% csrf_token %}

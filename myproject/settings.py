@@ -42,13 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'rest_framework',
-    'rest_framework_simplejwt',
     'myapp',
+    'rest_framework',
     'api',
+    'rest_framework_simplejwt',
     # опционально для blacklist:
-    # 'rest_framework_simplejwt.token_blacklist',
-    'drf_yasg',
+    'rest_framework_simplejwt.token_blacklist',
+    # 'debug_toolbar'
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -162,7 +163,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=365),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': False,   # если True — при refresh выдается новый refresh
     'BLACKLIST_AFTER_ROTATION': True, # требует token_blacklist app

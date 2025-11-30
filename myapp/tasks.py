@@ -11,3 +11,4 @@ def add(x, y):
 def sheduled_task():
     logger.info('>>>задача выполнена')
     return True
+

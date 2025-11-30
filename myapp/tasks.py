@@ -8,7 +8,7 @@ def add(x, y):
     return x * y
 
 @shared_task
-def sheduled_task():
-    logger.info('>>>задача выполнена')
+def scheduled_task():
+    logger.info('>>> задача выполнена')
     return True
 

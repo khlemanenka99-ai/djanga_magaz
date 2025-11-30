@@ -68,4 +68,38 @@ class OrderItem(models.Model):
     quantity = models.PositiveSmallIntegerField(default=1)
 
 
+class Cart(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='cart_items'
+    )
+    price_at_addition = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text='Цена продукта на момент добавления в корзину'
+    )
+    quantity = models.PositiveIntegerField(
+        default=1,
+        help_text='Количество товара'
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='cart_items'
+    )
+
+    def __str__(self):
+        return f"{self.product.name} x {self.quantity} (Пользователь: {self.user.username})"
+
+    @property
+    def total_price(self):
+        """Общая стоимость этого элемента корзины"""
+        return self.price_at_addition * self.quantity
+
+    def save(self, *args, **kwargs):
+        # фиксируем текущую цену продукта
+        if not self.pk:
+            self.price_at_addition = self.product.price
+        super().save(*args, **kwargs)
 

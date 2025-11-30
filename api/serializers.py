@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from myapp.models import Product, Category
+from myapp.models import Product, Category, Cart
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,3 +58,8 @@ class ProductDiscountSerializer(serializers.ModelSerializer):
         instance.discount_percent = validated_data['discount_percent']
         instance.save()
         return instance
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ['id', 'product', 'price_at_addition', 'quantity', 'user']

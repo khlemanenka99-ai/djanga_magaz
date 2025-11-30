@@ -3,16 +3,17 @@ from pprint import pprint
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import status, permissions
+from rest_framework import status, permissions, generics
 from rest_framework.decorators import api_view
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from api.permissions import IsManager, IsClient
-from myapp.models import Product
+from myapp.models import Product, Cart
 from rest_framework.views import APIView
 
-from api.serializers import ProductSerializer, RegisterSerializer, ProductDiscountSerializer
+from api.serializers import ProductSerializer, RegisterSerializer, ProductDiscountSerializer, CartSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -165,3 +166,56 @@ class SetDiscountAPIView(APIView):
                 "discount_percent": product.discount_percent
             })
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CartAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartSerializer
+
+    @swagger_auto_schema(
+        operation_summary="Получение элементов корзины",
+        operation_description="Просмотр товаров в корзине",
+        responses={
+            200: CartSerializer(many=True),
+        }
+    )
+    def get(self, request):
+        # Получение элементов корзины текущего пользователя
+        queryset = Cart.objects.filter(user=request.user)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+    @swagger_auto_schema(
+        operation_summary="Добавление товара в корзину",
+        operation_description="Создаёт новый элемент в корзине",
+        request_body=CartSerializer,
+        responses={
+            201: CartSerializer,
+            400: 'Ошибки валидации'
+        },
+    )
+    def post(self, request):
+        # Создание нового элемента корзины
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            product = serializer.validated_data['product']
+            serializer.save(user=request.user, price_at_addition=product.price)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @swagger_auto_schema(
+        operation_summary="Удаление товара из корзины",
+        operation_description="Удаляет товар",
+        responses={
+            204: 'Удалено успешно',
+            400: 'Неверный ID или отсутствует',
+            404: 'Элемент не найден'
+        }
+    )
+    def delete(self, request, pk=None):
+        # Удаление элемента корзины по ID
+        if pk is None:
+            return Response({'detail': 'ID элемента не предоставлено.'}, status=status.HTTP_400_BAD_REQUEST)
+        cart_item = get_object_or_404(Cart, pk=pk, user=request.user)
+        cart_item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+

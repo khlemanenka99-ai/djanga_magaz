@@ -14,7 +14,7 @@ app.conf.beat_schedule = {
         'args':(38,23)
     },
     'run-every-midnight': {
-        'task': 'myapp.tasks.scheduled_task',
-        'schedule': crontab(hour=0, minute=0)
+        'task': 'myapp.tasks.sheduled_task',
+        'schedule': 60.0
     }
 }

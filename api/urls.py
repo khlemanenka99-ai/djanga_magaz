@@ -1,11 +1,13 @@
 from django.urls import path
 
 from api.views import test_api, ProductDetailAPIView, ProductListAPIView, ProductCreateAPIView, set_cookie_example, \
-    get_cookie_example, RegisterAPIView, LogoutAPIView, SetDiscountAPIView
+    get_cookie_example, RegisterAPIView, LogoutAPIView, SetDiscountAPIView, CartAPIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,   # выдача access + refresh
     TokenRefreshView,      # обновление access по refresh
 )
+
+
 urlpatterns = [
     path('test/', test_api),
     path('products/<int:pk>/', ProductDetailAPIView.as_view(), name='product-detail'),
@@ -19,5 +21,8 @@ urlpatterns = [
 
     path('register/', RegisterAPIView.as_view(), name='api_register'),
 
-    path('products/<int:pk>/diskount', SetDiscountAPIView.as_view(), name='product_diskount')
+    path('products/<int:pk>/diskount', SetDiscountAPIView.as_view(), name='product_diskount'),
+
+    path('cart/', CartAPIView.as_view(), name='cart_create'),
+    path('cart/<int:pk>/', CartAPIView.as_view(), name='cart_delite'),
     ]

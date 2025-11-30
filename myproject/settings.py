@@ -214,3 +214,67 @@ SWAGGER_SETTINGS = {
         }
     },
 }
+
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "simple": {
+            "format": "[{levelname}] {asctime} {message}",
+            "style": "{",
+        },
+    },
+
+    "handlers": {
+        # ---- системный лог Django ----
+        "django_file": {
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_DIR, "django.log"),
+            "formatter": "simple",
+        },
+
+        "app_file": {
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_DIR, "app.log"),
+            "formatter": "simple",
+        },
+
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+
+    "loggers": {
+        # Основной Django логгер
+        "django": {
+            "handlers": ["django_file", "console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
+        # Логи сервера runserver — запросы типа "GET /..."
+        "django.server": {
+            "handlers": ["django_file", "console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
+        # Unauthorized / Forbidden / CSRF логи
+        "django.security": {
+            "handlers": ["django_file", "console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+
+        "api": {
+            "handlers": ["app_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}

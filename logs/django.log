@@ -397,3 +397,31 @@ drf_yasg.errors.SwaggerGenerationError: request_body can only be applied to (PUT
 [INFO] 2025-11-30 19:37:07,130 Watching for file changes with StatReloader
 [INFO] 2025-11-30 19:37:08,464 "GET /swagger/ HTTP/1.1" 200 2209
 [INFO] 2025-11-30 19:37:08,801 "GET /swagger/?format=openapi HTTP/1.1" 200 8085
+[INFO] 2025-11-30 19:39:46,657 "GET /admin/myapp/product/ HTTP/1.1" 200 18890
+[INFO] 2025-11-30 19:39:46,799 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[INFO] 2025-11-30 19:39:46,800 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[INFO] 2025-11-30 19:39:46,910 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[INFO] 2025-11-30 19:39:46,927 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[INFO] 2025-11-30 19:39:46,928 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[WARNING] 2025-11-30 19:39:47,078 Not Found: /favicon.ico
+[INFO] 2025-11-30 19:39:54,213 "GET /admin/token_blacklist/blacklistedtoken/ HTTP/1.1" 200 10944
+[INFO] 2025-11-30 19:39:54,258 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,262 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,263 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,271 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,295 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+[INFO] 2025-11-30 19:39:54,296 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,297 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,298 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,305 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,324 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,325 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,327 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,333 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-11-30 19:39:54,340 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,345 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,349 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+[INFO] 2025-11-30 19:39:54,358 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[WARNING] 2025-11-30 19:39:54,512 Not Found: /favicon.ico
+[INFO] 2025-11-30 19:54:58,636 /home/vboxuser/PycharmProjects/djanga_magaz/myproject/celery.py changed, reloading.
+[INFO] 2025-11-30 20:17:57,344 Watching for file changes with StatReloader

@@ -14,7 +14,11 @@ app.conf.beat_schedule = {
         'args':(38,23)
     },
     'run-every-midnight': {
-        'task': 'myapp.tasks.sheduled_task',
+        'task': 'myapp.tasks.scheduled_task',
         'schedule': 60.0
+    },
+    'add2-every-30-seconds': {
+        'task': 'myapp.tasks.dollar_to_byn',
+        'schedule': 90.0,
     }
 }

@@ -17,8 +17,8 @@ app.conf.beat_schedule = {
         'task': 'myapp.tasks.scheduled_task',
         'schedule': 60.0
     },
-    'add2-every-30-seconds': {
+    'dollar-to-byn-every-hour': {
         'task': 'myapp.tasks.dollar_to_byn',
-        'schedule': 90.0,
+        'schedule': 60.0
     }
 }

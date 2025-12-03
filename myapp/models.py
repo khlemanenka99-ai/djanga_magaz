@@ -1,7 +1,12 @@
+import logging
+
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from decimal import Decimal
+from .tasks import dollar_to_byn
+
+logger = logging.getLogger('api')
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -26,10 +31,20 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     discount_percent = models.PositiveSmallIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
 
+
     @property
     def discounted_price(self):
         discount_multiplier = Decimal('1') - Decimal(self.discount_percent) / Decimal('100')
         return self.price * discount_multiplier
+
+    def cur_dollar(self):
+        result = dollar_to_byn.apply_async()
+        try:
+            rate = result.get(timeout=10)
+            return self.price / Decimal(rate)
+        except Exception as e:
+            logger.error(f"Ошибка: {e}")
+            return None
 
     def save(self, *args, **kwargs):
         self.in_stock = self.quantity > 0

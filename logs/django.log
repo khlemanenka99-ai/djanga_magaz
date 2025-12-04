@@ -522,3 +522,179 @@ drf_yasg.errors.SwaggerGenerationError: request_body can only be applied to (PUT
 [INFO] 2025-12-03 12:13:52,285 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
 [INFO] 2025-12-03 12:13:57,005 "GET / HTTP/1.1" 200 13994
 [WARNING] 2025-12-03 12:13:57,043 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:46:24,848 Watching for file changes with StatReloader
+[INFO] 2025-12-04 09:48:23,331 /home/vboxuser/PycharmProjects/djanga_magaz/myproject/celery.py changed, reloading.
+[INFO] 2025-12-04 09:48:24,799 Watching for file changes with StatReloader
+[WARNING] 2025-12-04 09:50:30,274 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:50:30,282 "GET /static/no-image.png HTTP/1.1" 200 2185
+[INFO] 2025-12-04 09:50:34,192 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:50:34,284 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:52:03,797 /home/vboxuser/PycharmProjects/djanga_magaz/myproject/celery.py changed, reloading.
+[INFO] 2025-12-04 09:52:05,293 Watching for file changes with StatReloader
+[INFO] 2025-12-04 09:56:33,721 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/signals.py changed, reloading.
+[INFO] 2025-12-04 09:56:34,950 Watching for file changes with StatReloader
+[INFO] 2025-12-04 09:57:08,238 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/tasks.py changed, reloading.
+[INFO] 2025-12-04 09:57:09,829 Watching for file changes with StatReloader
+[INFO] 2025-12-04 09:57:50,607 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:57:50,792 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:57:50,799 "GET /static/no-image.png HTTP/1.1" 200 2185
+[INFO] 2025-12-04 09:57:53,240 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:57:53,323 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:58:37,600 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:58:37,661 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:58:39,179 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:58:39,249 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:58:39,541 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:58:39,590 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:58:39,839 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:58:39,913 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 09:58:40,178 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 09:58:40,248 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 10:04:57,460 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/tasks.py changed, reloading.
+[INFO] 2025-12-04 10:05:06,564 Watching for file changes with StatReloader
+[INFO] 2025-12-04 10:06:05,135 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/tasks.py changed, reloading.
+[INFO] 2025-12-04 10:06:11,600 Watching for file changes with StatReloader
+[INFO] 2025-12-04 10:07:21,420 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/tasks.py changed, reloading.
+[INFO] 2025-12-04 10:07:23,196 Watching for file changes with StatReloader
+[INFO] 2025-12-04 10:08:23,360 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/views.py changed, reloading.
+[INFO] 2025-12-04 10:13:12,616 Watching for file changes with StatReloader
+[INFO] 2025-12-04 10:13:56,571 "GET / HTTP/1.1" 200 13929
+[INFO] 2025-12-04 10:13:58,724 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 10:13:58,786 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 10:13:58,792 "GET /static/no-image.png HTTP/1.1" 304 0
+[INFO] 2025-12-04 10:14:00,397 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 10:14:00,425 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 10:14:01,501 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 10:14:01,542 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 10:14:07,095 "GET / HTTP/1.1" 200 13929
+[WARNING] 2025-12-04 10:14:07,170 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 10:14:18,996 "GET /admin/ HTTP/1.1" 200 13380
+[INFO] 2025-12-04 10:14:19,083 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[INFO] 2025-12-04 10:14:19,083 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[INFO] 2025-12-04 10:14:19,087 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+[INFO] 2025-12-04 10:14:19,087 "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[INFO] 2025-12-04 10:14:19,093 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[INFO] 2025-12-04 10:14:19,097 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16194
+[INFO] 2025-12-04 10:14:19,100 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[INFO] 2025-12-04 10:14:19,127 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+[INFO] 2025-12-04 10:14:19,127 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+[INFO] 2025-12-04 10:14:19,129 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+[INFO] 2025-12-04 10:14:25,914 "GET /admin/myapp/product/ HTTP/1.1" 200 19671
+[INFO] 2025-12-04 10:14:26,000 "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[INFO] 2025-12-04 10:14:26,014 "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+[INFO] 2025-12-04 10:14:26,054 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[INFO] 2025-12-04 10:14:26,058 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[INFO] 2025-12-04 10:14:26,065 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[INFO] 2025-12-04 10:14:26,068 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+[INFO] 2025-12-04 10:14:26,078 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[INFO] 2025-12-04 10:14:26,087 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[INFO] 2025-12-04 10:14:26,093 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+[INFO] 2025-12-04 10:14:26,107 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[INFO] 2025-12-04 10:14:26,117 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[INFO] 2025-12-04 10:14:26,140 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[INFO] 2025-12-04 10:14:26,162 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 10:14:26,233 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+[INFO] 2025-12-04 10:14:26,233 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+[INFO] 2025-12-04 10:14:32,078 "POST /admin/myapp/product/ HTTP/1.1" 200 10507
+[INFO] 2025-12-04 10:14:32,168 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+[INFO] 2025-12-04 10:14:33,407 "POST /admin/myapp/product/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 10:14:33,476 "GET /admin/myapp/product/ HTTP/1.1" 200 19358
+[INFO] 2025-12-04 10:14:33,642 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 10:14:38,165 "GET /admin/myapp/product/add/ HTTP/1.1" 200 21481
+[INFO] 2025-12-04 10:14:38,267 "GET /static/admin/css/forms.css HTTP/1.1" 200 8844
+[INFO] 2025-12-04 10:14:38,269 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+[INFO] 2025-12-04 10:14:38,286 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[INFO] 2025-12-04 10:14:38,293 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[INFO] 2025-12-04 10:14:38,298 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 10:14:38,302 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+[INFO] 2025-12-04 10:14:38,499 "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 651
+[INFO] 2025-12-04 10:15:03,067 "POST /admin/myapp/product/add/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 10:15:03,129 "GET /admin/myapp/product/ HTTP/1.1" 200 19869
+[INFO] 2025-12-04 10:15:03,231 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 10:15:27,186 "GET /admin/myapp/product/ HTTP/1.1" 200 19672
+[WARNING] 2025-12-04 10:15:31,912 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 11:59:28,007 Watching for file changes with StatReloader
+[INFO] 2025-12-04 12:07:23,884 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/models.py changed, reloading.
+[INFO] 2025-12-04 12:07:25,472 Watching for file changes with StatReloader
+[WARNING] 2025-12-04 12:07:32,504 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[WARNING] 2025-12-04 12:07:32,507 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:07:32,519 "GET /static/no-image.png HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:07:32,521 "GET /static/no-image.png HTTP/1.1" 200 2185
+[INFO] 2025-12-04 12:07:40,799 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:07:40,918 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:07:42,631 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:07:42,673 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:07:44,662 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:07:44,703 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:08:27,224 /home/vboxuser/PycharmProjects/djanga_magaz/myapp/models.py changed, reloading.
+[INFO] 2025-12-04 12:08:28,414 Watching for file changes with StatReloader
+[INFO] 2025-12-04 12:08:29,204 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:08:29,277 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:08:46,829 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:08:46,887 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:09:01,977 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:09:02,019 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:09:33,467 "GET / HTTP/1.1" 200 13930
+[WARNING] 2025-12-04 12:09:33,504 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:10:02,642 "POST /admin/myapp/product/ HTTP/1.1" 200 10507
+[INFO] 2025-12-04 12:10:02,770 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,771 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,788 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,794 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,794 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,810 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,812 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,822 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+[INFO] 2025-12-04 12:10:02,822 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,822 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,823 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,825 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,838 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,844 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,871 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:02,971 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+[INFO] 2025-12-04 12:10:04,322 "POST /admin/myapp/product/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 12:10:04,414 "GET /admin/myapp/product/ HTTP/1.1" 200 19358
+[INFO] 2025-12-04 12:10:04,552 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:04,557 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:04,601 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:10:04,641 "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[INFO] 2025-12-04 12:10:04,642 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[INFO] 2025-12-04 12:10:04,657 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+[INFO] 2025-12-04 12:10:04,657 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+[INFO] 2025-12-04 12:10:05,518 "GET /admin/myapp/product/add/ HTTP/1.1" 200 21481
+[INFO] 2025-12-04 12:10:05,603 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:10:05,628 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:05,647 "GET /static/admin/js/inlines.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:05,655 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:05,657 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:05,693 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+[INFO] 2025-12-04 12:10:05,798 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+[INFO] 2025-12-04 12:10:05,798 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+[INFO] 2025-12-04 12:10:05,876 "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 651
+[INFO] 2025-12-04 12:10:10,187 "POST /admin/myapp/product/add/ HTTP/1.1" 200 21864
+[INFO] 2025-12-04 12:10:10,274 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:10:24,423 "POST /admin/myapp/product/add/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 12:10:24,472 "GET /admin/myapp/product/ HTTP/1.1" 200 19866
+[INFO] 2025-12-04 12:10:24,592 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:10:42,429 "GET / HTTP/1.1" 200 13927
+[WARNING] 2025-12-04 12:10:42,474 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:10:46,612 "GET / HTTP/1.1" 200 13927
+[WARNING] 2025-12-04 12:10:46,672 "GET /static/css/styles.css HTTP/1.1" 404 1856
+[INFO] 2025-12-04 12:12:16,074 "POST /admin/myapp/product/ HTTP/1.1" 200 10507
+[INFO] 2025-12-04 12:12:17,442 "POST /admin/myapp/product/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 12:12:17,514 "GET /admin/myapp/product/ HTTP/1.1" 200 19358
+[INFO] 2025-12-04 12:12:17,688 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:12:21,368 "GET /admin/myapp/product/add/ HTTP/1.1" 200 21481
+[INFO] 2025-12-04 12:12:21,454 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:12:21,456 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+[INFO] 2025-12-04 12:12:21,458 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+[INFO] 2025-12-04 12:12:24,649 "POST /admin/myapp/product/add/ HTTP/1.1" 200 21868
+[INFO] 2025-12-04 12:12:24,768 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:12:38,956 "POST /admin/myapp/product/add/ HTTP/1.1" 302 0
+[INFO] 2025-12-04 12:12:39,029 "GET /admin/myapp/product/ HTTP/1.1" 200 19881
+[INFO] 2025-12-04 12:12:39,263 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[INFO] 2025-12-04 12:12:39,269 "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[INFO] 2025-12-04 12:12:39,271 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[INFO] 2025-12-04 12:14:41,046 "GET / HTTP/1.1" 200 14003
+[WARNING] 2025-12-04 12:14:41,126 "GET /static/css/styles.css HTTP/1.1" 404 1856

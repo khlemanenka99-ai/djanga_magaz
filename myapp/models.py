@@ -1,6 +1,8 @@
 import logging
 
+from celery.utils.time import rate
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from decimal import Decimal
@@ -38,12 +40,15 @@ class Product(models.Model):
         return self.price * discount_multiplier
 
     def cur_dollar(self):
-        result = dollar_to_byn.apply_async()
+        # Получаем курс из кеша
+        rate = cache.get('dollar_to_byn_rate')
+        if rate is None:
+            logger.warning("Курс доллара не найден в кешировании")
+            return None
         try:
-            rate = result.get(timeout=10)
             return self.price / Decimal(rate)
         except Exception as e:
-            logger.error(f"Ошибка: {e}")
+            logger.error(f"Ошибка при расчетах в cur_dollar: {e}")
             return None
 
     def save(self, *args, **kwargs):

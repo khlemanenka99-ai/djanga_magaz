@@ -23,7 +23,7 @@ def register_view(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
 
-@cache_page(60 * 60 * 24)
+@cache_page(60 * 30)
 def products_view(request):
     print('>>>get')
     categories = Category.objects.all()

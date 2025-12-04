@@ -8,15 +8,15 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    'add-every-30-seconds': {
-        'task': 'myapp.tasks.add',
-        'schedule': 30.0,
-        'args':(38,23)
-    },
-    'run-every-midnight': {
-        'task': 'myapp.tasks.scheduled_task',
-        'schedule': 60.0
-    },
+    # 'add-every-30-seconds': {
+    #     'task': 'myapp.tasks.add',
+    #     'schedule': 30.0,
+    #     'args':(38,23)
+    # },
+    # 'run-every-midnight': {
+    #     'task': 'myapp.tasks.scheduled_task',
+    #     'schedule': 60.0
+    # },
     'dollar-to-byn-every-hour': {
         'task': 'myapp.tasks.dollar_to_byn',
         'schedule': 60.0

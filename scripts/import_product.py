@@ -1,4 +1,4 @@
-from myapp.models import Category, Product
+from djanga_magaz.myapp.models import Category, Product
 
 
 def run():
